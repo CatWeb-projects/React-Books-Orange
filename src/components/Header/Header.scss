@@ -1,0 +1,12 @@
+.header {
+  background-color: #6ee7b7;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+
+  > a {
+    color: #000;
+    font-weight: 700;
+    margin: 0 8px;
+  }
+}
