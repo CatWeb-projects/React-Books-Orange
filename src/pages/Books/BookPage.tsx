@@ -26,7 +26,6 @@ const BookPage = () => {
   }, [])
 
   const book = useMemo(() => data, [data]);
-  console.log(book, loading, errors, 'book');
   return (
     <div className="book-page">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}

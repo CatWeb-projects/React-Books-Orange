@@ -1,4 +1,6 @@
+import { useLocation } from 'react-router-dom';
 import './Search.scss';
+import { useEffect } from 'react';
 
 interface SearchProps {
   search: string;
@@ -9,6 +11,14 @@ export const Search = ({
   search,
   searchBook
 }: SearchProps) => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.search) {
+      searchBook(location.search.split('?q=')[1]);
+    }
+  }, [location.search]);
+  
   return (
     <div className="search">
       <input

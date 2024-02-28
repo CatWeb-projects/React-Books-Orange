@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useRequest } from "estafette";
 import { books } from "../../services/api/books/books.api";
 import { BooksItem } from "./BooksItem";
@@ -14,6 +15,8 @@ interface BooksComponentProps {
 
 export const Books = ({ search }: BooksComponentProps) => {
   const { request, data, errors, loading } = useRequest<BooksProps[]>();
+  const [, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   
   const fetchGetSearchBooks = () => {
     request(books.getSearchBooks.action('-term'));
@@ -23,8 +26,10 @@ export const Books = ({ search }: BooksComponentProps) => {
     const debounce = setTimeout(() => {
       if (search) {
         request(books.getSearchBooks.action(search));
+        setSearchParams(`q=${search}`);
       } else {
         fetchGetSearchBooks();
+        navigate(`/`);
       }
     }, 1000);
 
@@ -34,11 +39,7 @@ export const Books = ({ search }: BooksComponentProps) => {
     }
   }, [search])
 
-  const booksData: BookProps[] = useMemo(() => data?.items, [data])
- 
-
-  console.log(booksData, 'books');
-
+  const booksData: BookProps[] = useMemo(() => data?.items, [data]);
   return (
     <div className="books">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
