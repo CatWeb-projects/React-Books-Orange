@@ -1,9 +1,11 @@
+import { Icon } from '../Icon/Icon';
+
 import './Loading.scss';
 
 export const Loading = () => {
   return (
     <div className="loading">
-      <img src="/images/loading.svg" alt="loading" />
+      <Icon type="loading" />
     </div>
   )
 }

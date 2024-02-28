@@ -13,6 +13,7 @@ export interface BookProps {
     };
     previewLink: string;
     subtitle?: string;
+    publisher?: string;
   };
   searchInfo?: {
     textSnippet: React.ReactNode;

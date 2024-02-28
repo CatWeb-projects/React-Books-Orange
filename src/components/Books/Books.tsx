@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { useRequest } from "estafette";
 import { books } from "../../services/api/books/books.api";
 import { BooksItem } from "./BooksItem";
@@ -10,13 +10,16 @@ import { BookProps, BooksProps } from "../../interface/books.interface";
 import './Books.scss';
 
 interface BooksComponentProps {
-  search: string;
+  search?: string;
+  favoriteBooks?: BookProps[]
 }
 
-export const Books = ({ search }: BooksComponentProps) => {
+export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
+  const [booksData, setBooksData] = useState<BookProps[]>([]);
   const { request, data, errors, loading } = useRequest<BooksProps[]>();
   const [, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   
   const fetchGetSearchBooks = () => {
     request(books.getSearchBooks.action('-term'));
@@ -24,12 +27,16 @@ export const Books = ({ search }: BooksComponentProps) => {
 
   useEffect(() => {
     const debounce = setTimeout(() => {
-      if (search) {
-        request(books.getSearchBooks.action(search));
-        setSearchParams(`q=${search}`);
-      } else {
-        fetchGetSearchBooks();
-        navigate(`/`);
+      if (pathname === '/') {
+        if (!search) {
+          navigate('/')
+        }
+        if (search) {
+          request(books.getSearchBooks.action(search));
+          setSearchParams(`q=${search}`);
+        } else {
+          fetchGetSearchBooks();
+        }
       }
     }, 1000);
 
@@ -39,16 +46,42 @@ export const Books = ({ search }: BooksComponentProps) => {
     }
   }, [search])
 
-  const booksData: BookProps[] = useMemo(() => data?.items, [data]);
+  useEffect(() => {
+    if (pathname === '/favorites') {
+      if (favoriteBooks) {
+        setBooksData(favoriteBooks)
+      } else {
+        setBooksData([]);
+      }
+    } else {
+      setBooksData(data?.items);
+    }
+  }, [data?.items, favoriteBooks, pathname])
+
+  // const booksData: BookProps[] = useMemo(() => {
+  //   if (data?.items) {
+  //     return data?.items;
+  //   } else if (favoriteBooks) {
+  //     return favoriteBooks
+  //   } else {
+  //     return [];
+  //   }
+  // }, [data?.items, favoriteBooks]);
+
+  console.log(booksData?.length, 'books data')
+  console.log(favoriteBooks, 'favoriteBooks')
   return (
     <div className="books">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
       {loading && <Loading />}
       <div className="books--wrapper">
-        {booksData?.length && booksData?.map((book) => (
+        {booksData?.length > 0 && booksData?.map((book) => (
           <BooksItem book={book} key={book.id} />
         ))}
       </div>
+      {(pathname === '/favorites' && booksData?.length === 0) && (
+        <div>No Data</div>
+      )}
     </div>
   )
 }

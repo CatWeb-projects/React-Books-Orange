@@ -44,13 +44,58 @@
     transition: all 0.3s ease-in-out;
 
     > svg {
-     fill: #fff;
-     margin-left: 8px;
+      margin-left: 8px;
     }
 
     &:hover {
       background-color: #fff;
       border: 2px solid orange;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .books {
+    &--wrapper {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .book {
+    &--title {
+      font-size: 16px;
+    }
+  
+    &--text {
+      font-size: 12px;
+    }
+  
+    &--image {
+      max-height: 120px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .books {
+    &--wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .books {
+    &--wrapper {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .book {
+    &--text {
+      width: 70%;
     }
   }
 }

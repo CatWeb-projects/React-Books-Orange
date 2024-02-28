@@ -7,6 +7,7 @@ import { Layout, Loading } from '../components';
 
 const BooksPage = lazy(() => import('../pages/Books/BooksPage'));
 const BookPage = lazy(() => import('../pages/Books/BookPage'));
+const FavoriteBooksPage = lazy(() => import('../pages/Books/FavoriteBooksPage'));
 
 function MainRoutes() {
   return (
@@ -22,12 +23,22 @@ function MainRoutes() {
             )
           }
         />
-         <Route
+        <Route
           path=":id"
           element={
             (
               <Suspense fallback={<Loading />}>
                 <BookPage />
+              </Suspense>
+            )
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            (
+              <Suspense fallback={<Loading />}>
+                <FavoriteBooksPage />
               </Suspense>
             )
           }

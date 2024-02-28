@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { BookProps } from "../../interface/books.interface"
 import { BookItemTitle } from "./BookItemTitle";
-import { Star } from '../../../public/svg/star';
 import { getDataFromStorage, setDataToStorage } from "../../hooks/storage";
+import { Icon } from "../Icon/Icon";
 
 interface BookItemsProps {
   book: BookProps
@@ -11,10 +11,20 @@ interface BookItemsProps {
 export const BooksItem = ({ book }: BookItemsProps) => {
   const favoriteBooksStorage = getDataFromStorage('favorite-books');
   const { id } = useParams();
+  let isFavoriteBook: BookProps
+  favoriteBooksStorage?.filter((el) => {
+    if (el.id === book.id) {
+      isFavoriteBook = {...el}
+    }
+  });
+
+  console.log(isFavoriteBook, 'x')
 
   const addFavoriteBook = () => {
-    const favoriteBooks: BookProps[] = favoriteBooksStorage;
-    if (!favoriteBooks?.includes(favoriteBooks?.find((el) => el.id === book.id))) {
+    const favoriteBooks: BookProps[] = favoriteBooksStorage ? favoriteBooksStorage : [];
+    if (favoriteBooks?.includes(favoriteBooks?.find((el) => el.id === book.id))) {
+      favoriteBooks.filter((el) => el.id !== book.id);
+    } else {
       favoriteBooks?.push(book);
     }
     setDataToStorage('favorite-books', favoriteBooks);
@@ -25,8 +35,10 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       {id && (
         <button className="book--favorites" onClick={addFavoriteBook}>
           <span>Add to favorites</span>
-          <Star />
-          {/* <img src="/images/star.svg" alt="star" /> */}
+          <Icon
+            type="star"
+            fill={isFavoriteBook?.id ? '#000' : '#fff'}
+          />
         </button>
       )}
       {book?.volumeInfo?.title && (
@@ -37,7 +49,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
         <a
           href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/${book.id}`}
           target={id ? '_blank' : ''}
-          style={id ? {margin: '24px 0'} : {}}
+          style={id ? {margin: '12px 0'} : {}}
         >
           <img
             className="book--image"
@@ -46,6 +58,12 @@ export const BooksItem = ({ book }: BookItemsProps) => {
             style={id ? {maxHeight: 'none'} : {}}
           />
         </a>
+      )}
+
+      {book?.volumeInfo?.publisher && (
+        <div className="book--text">
+          {book?.volumeInfo?.publisher}
+        </div>
       )}
       
       {book?.volumeInfo?.subtitle && (
