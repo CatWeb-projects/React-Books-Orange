@@ -2,6 +2,8 @@ import { useEffect, useMemo } from "react";
 import { useRequest } from "estafette";
 import { books } from "../../services/api/books/books.api";
 import { BooksItem } from "./BooksItem";
+import { Loading } from "../Loading/Loading";
+import { ShowErrorMessage } from "../ShowErrorMessage/ShowErrorMessage";
 import { BookProps, BooksProps } from "../../interface/books.interface";
 
 import './Books.scss';
@@ -39,8 +41,8 @@ export const Books = ({ search }: BooksComponentProps) => {
 
   return (
     <div className="books">
-      {errors?.error?.message && <div>{errors?.error?.message}</div>}
-      {loading && <div>...</div>}
+      {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
+      {loading && <Loading />}
       <div className="books--wrapper">
         {booksData?.length && booksData?.map((book) => (
           <BooksItem book={book} key={book.id} />

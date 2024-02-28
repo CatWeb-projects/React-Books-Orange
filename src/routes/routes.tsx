@@ -3,7 +3,7 @@ import {
   Suspense,
 } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from '../components';
+import { Layout, Loading } from '../components';
 
 const BooksPage = lazy(() => import('../pages/Books/BooksPage'));
 const BookPage = lazy(() => import('../pages/Books/BookPage'));
@@ -16,7 +16,7 @@ function MainRoutes() {
           index
           element={
             (
-              <Suspense fallback={<div>...loading page</div>}>
+              <Suspense fallback={<Loading />}>
                 <BooksPage />
               </Suspense>
             )
@@ -26,7 +26,7 @@ function MainRoutes() {
           path=":id"
           element={
             (
-              <Suspense fallback={<div>...loading page</div>}>
+              <Suspense fallback={<Loading />}>
                 <BookPage />
               </Suspense>
             )

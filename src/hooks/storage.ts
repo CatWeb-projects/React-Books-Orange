@@ -4,5 +4,5 @@ export function setDataToStorage(storageKey: string, data: any) {
 }
 
 export function getDataFromStorage(storageKey: string) {
-  return localStorage.getItem(storageKey);
+  return storageKey !==null && JSON.parse(localStorage.getItem(storageKey)!);
 }

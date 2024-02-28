@@ -9,27 +9,19 @@ interface BookItemsProps {
 }
 
 export const BooksItem = ({ book }: BookItemsProps) => {
-  const storage = getDataFromStorage('favorite-books')
-  // const [books, setBooks] = useState<any>(JSON.parse(storage!))
+  const favoriteBooksStorage = getDataFromStorage('favorite-books');
   const { id } = useParams();
 
   const addFavoriteBook = () => {
-    const data = JSON.parse(storage!);
-    console.log(data, 'data');
-    const x = data ? [...data] : []
-    x.push(book);
-    // if (!books?.includes(book.id)) {
-     
-    // }
-    // setBooks(x);
-    setDataToStorage('favorite-books', x);
+    const favoriteBooks: BookProps[] = favoriteBooksStorage;
+    if (!favoriteBooks?.includes(favoriteBooks?.find((el) => el.id === book.id))) {
+      favoriteBooks?.push(book);
+    }
+    setDataToStorage('favorite-books', favoriteBooks);
   };
-
-  console.log(JSON.parse(storage!), 'storage');
-  // console.log(books, 'bboks')
   
   return (
-    <div className="book">
+    <div className="book" style={id ? {padding: '24px 0'} : {}}>
       {id && (
         <button className="book--favorites" onClick={addFavoriteBook}>
           <span>Add to favorites</span>
@@ -42,8 +34,17 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       )}
       
       {book?.volumeInfo?.imageLinks?.thumbnail && (
-        <a href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/${book.id}`} target={id ? '_blank' : ''}>
-          <img className="book--image" src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+        <a
+          href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/${book.id}`}
+          target={id ? '_blank' : ''}
+          style={id ? {margin: '24px 0'} : {}}
+        >
+          <img
+            className="book--image"
+            src={book.volumeInfo.imageLinks.thumbnail}
+            alt={book.volumeInfo.title}
+            style={id ? {maxHeight: 'none'} : {}}
+          />
         </a>
       )}
       
