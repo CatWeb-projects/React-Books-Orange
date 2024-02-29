@@ -9,7 +9,7 @@ const BooksPage = () => {
   }
 
   return (
-   <div className="book-page">
+   <div className="books-page">
     <Search
       search={search}
       searchBook={searchBook}

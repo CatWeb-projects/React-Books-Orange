@@ -1,8 +1,9 @@
 interface BookItemTitleProps {
   title: string;
+  classes?: string;
 }
 
-export const BookItemTitle = ({ title }: BookItemTitleProps) => {
+export const BookItemTitle = ({ title, classes }: BookItemTitleProps) => {
   const bookTitle = () => {
     if (title.length > 60) {
       return `${title.slice(0, 60)}...`
@@ -12,7 +13,7 @@ export const BookItemTitle = ({ title }: BookItemTitleProps) => {
   };
 
   return (
-    <h3 className="book--title">
+    <h3 className={`book--title ${classes}`}>
       {bookTitle()}
     </h3>
   )

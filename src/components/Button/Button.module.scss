@@ -10,6 +10,9 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.3s ease-in-out;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
 
   &:disabled {
     opacity: 0.5;

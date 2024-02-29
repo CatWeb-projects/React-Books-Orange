@@ -19,7 +19,7 @@ export function Button({
   onClick,
   className = '',
   type = 'primary',
-  style,
+  style = {},
   generalType = 'button',
   disabled,
   size = 'medium',

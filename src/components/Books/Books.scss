@@ -19,23 +19,38 @@
   background-color: var(--books-light-yellow);
   text-align: center;
   padding: 8px;
+  width: 100%;
+  max-width: 500px;
 
   &--title {
-    margin: 8px 0;
+    margin: 16px 0;
+
+    &--detailed {
+      font-size: 30px;
+    }
   }
 
   &--text {
     margin: 8px 0;
     font-size: 14px;
+
+    &--detailed {
+      font-size: 20px;
+    }
   }
 
   &--image {
     max-height: 170px;
+
+    &--detailed {
+      height: 400px;
+    }
   }
 
   &--favorites {
     display: flex;
     align-items: center;
+    margin: 8px 0;
 
     > svg {
       margin-left: 8px;
@@ -55,14 +70,23 @@
   .book {
     &--title {
       font-size: 16px;
+
+      &--detailed {
+        font-size: 24px;
+      }
     }
-  
+
     &--text {
       font-size: 12px;
+
+      &--detailed {
+        font-size: 16px;
+      }
     }
-  
+
     &--image {
       max-height: 120px;
+      height: 300px;
     }
   }
 }
@@ -71,6 +95,21 @@
   .books {
     &--wrapper {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .book {
+    &--title {
+      width: 70%;
+
+      &--detailed {
+        font-size: 20px;
+      }
+    }
+
+    &--favorites {
+      width: auto;
+      padding: 8px;
     }
   }
 }
@@ -85,6 +124,14 @@
   .book {
     &--text {
       width: 70%;
+
+      &--detailed {
+        font-size: 14px;
+      }
+    }
+
+    &--image {
+      height: auto;
     }
   }
 }

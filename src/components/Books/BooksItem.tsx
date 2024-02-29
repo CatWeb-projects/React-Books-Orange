@@ -31,9 +31,9 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   };
 
   return (
-    <div className="book" style={id ? {padding: '24px 0'} : {}}>
+    <div className="book" style={id ? { padding: '24px' } : {}}>
       {id && (
-        <Button size="auto" className="book--favorites" onClick={addFavoriteBook}>
+        <Button size="large" className="book--favorites" onClick={addFavoriteBook}>
           <span>Add to favorites</span>
           <Icon
             type="star"
@@ -41,9 +41,9 @@ export const BooksItem = ({ book }: BookItemsProps) => {
           />
         </Button>
       )}
-      
+
       {book?.volumeInfo?.title && (
-        <BookItemTitle title={book?.volumeInfo?.title} />
+        <BookItemTitle title={book?.volumeInfo?.title} classes={id ? 'book--title--detailed' : ''} />
       )}
       
       {book?.volumeInfo?.imageLinks?.thumbnail && (
@@ -53,7 +53,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
           style={id ? {margin: '12px 0'} : {}}
         >
           <img
-            className="book--image"
+            className={`book--image ${id ? 'book--image--detailed' : ''}`}
             src={book.volumeInfo.imageLinks.thumbnail}
             alt={book.volumeInfo.title}
             style={id ? {maxHeight: 'none'} : {}}
@@ -62,20 +62,24 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       )}
 
       {book?.volumeInfo?.publisher && (
-        <div className="book--text">
-          {book?.volumeInfo?.publisher}
+        <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
+          Publisher: {book?.volumeInfo?.publisher}
         </div>
       )}
       
       {book?.volumeInfo?.subtitle && (
-        <div className="book--text">
+        <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
           {book?.volumeInfo?.subtitle}
         </div>
       )}
 
       {book?.searchInfo?.textSnippet && (
-        <div className="book--text" dangerouslySetInnerHTML={{__html: book.searchInfo.textSnippet}} />
+        <div
+          className={`book--text ${id ? 'book--text--detailed' : ''}`}
+          dangerouslySetInnerHTML={{__html: book.searchInfo.textSnippet}}
+        />
       )}
+
     </div>
   )
 }

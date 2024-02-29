@@ -14,6 +14,7 @@ export interface BookProps {
     previewLink: string;
     subtitle?: string;
     publisher?: string;
+    description?: React.ReactNode;
   };
   searchInfo?: {
     textSnippet: React.ReactNode;
