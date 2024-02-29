@@ -47,7 +47,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       
       {book?.volumeInfo?.imageLinks?.thumbnail && (
         <a
-          href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/${book.id}`}
+          href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/book/${book.id}`}
           target={id ? '_blank' : ''}
           style={id ? {margin: '12px 0'} : {}}
         >

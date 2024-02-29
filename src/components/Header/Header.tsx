@@ -5,7 +5,7 @@ export const Header = () => {
     <header>
       <div className="header">
         <a href="/">Search</a>
-        <a href="/favorites">Favorites</a>
+        <a href="/books/favorites">Favorites</a>
       </div>
     </header>
   )

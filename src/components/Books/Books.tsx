@@ -47,7 +47,7 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
   }, [search])
 
   useEffect(() => {
-    if (pathname === '/favorites') {
+    if (pathname === '/books/favorites') {
       if (favoriteBooks) {
         setBooksData(favoriteBooks)
       } else {
@@ -57,16 +57,6 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
       setBooksData(data?.items);
     }
   }, [data?.items, favoriteBooks, pathname])
-
-  // const booksData: BookProps[] = useMemo(() => {
-  //   if (data?.items) {
-  //     return data?.items;
-  //   } else if (favoriteBooks) {
-  //     return favoriteBooks
-  //   } else {
-  //     return [];
-  //   }
-  // }, [data?.items, favoriteBooks]);
 
   console.log(booksData?.length, 'books data')
   console.log(favoriteBooks, 'favoriteBooks')

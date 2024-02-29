@@ -24,7 +24,7 @@ function MainRoutes() {
           }
         />
         <Route
-          path=":id"
+          path="book/:id"
           element={
             (
               <Suspense fallback={<Loading />}>
@@ -34,7 +34,7 @@ function MainRoutes() {
           }
         />
         <Route
-          path="/favorites"
+          path="books/favorites"
           element={
             (
               <Suspense fallback={<Loading />}>
