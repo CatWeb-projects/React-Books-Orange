@@ -3,43 +3,43 @@ import { BookProps } from "../../interface/books.interface"
 import { BookItemTitle } from "./BookItemTitle";
 import { getDataFromStorage, setDataToStorage } from "../../hooks/storage";
 import { Icon } from "../Icon/Icon";
+import { useEffect, useState } from "react";
+import { Button } from "../Button/Button";
 
 interface BookItemsProps {
-  book: BookProps
+  book: BookProps;
 }
 
 export const BooksItem = ({ book }: BookItemsProps) => {
-  const favoriteBooksStorage = getDataFromStorage('favorite-books');
-  const { id } = useParams();
-  let isFavoriteBook: BookProps
-  favoriteBooksStorage?.filter((el) => {
-    if (el.id === book.id) {
-      isFavoriteBook = {...el}
-    }
+  const [books, setBooks] = useState<BookProps[]>(() => {
+    return getDataFromStorage('favorite-books') || [];
   });
+  const [isFavoriteBook, setIsFavoriteBook] = useState<BookProps>();
+  const { id } = useParams();
 
-  console.log(isFavoriteBook, 'x')
+  useEffect(() => {
+    setIsFavoriteBook(books?.find((el) => el.id === book.id));
+    setDataToStorage('favorite-books', books);
+  }, [books, isFavoriteBook]);
 
   const addFavoriteBook = () => {
-    const favoriteBooks: BookProps[] = favoriteBooksStorage ? favoriteBooksStorage : [];
-    if (favoriteBooks?.includes(favoriteBooks?.find((el) => el.id === book.id))) {
-      favoriteBooks.filter((el) => el.id !== book.id);
+    if (isFavoriteBook && books) {
+      setBooks(books.filter((el) => el.id !== isFavoriteBook.id));
     } else {
-      favoriteBooks?.push(book);
+      setBooks([...books, book]);
     }
-    setDataToStorage('favorite-books', favoriteBooks);
   };
   
   return (
     <div className="book" style={id ? {padding: '24px 0'} : {}}>
       {id && (
-        <button className="book--favorites" onClick={addFavoriteBook}>
+        <Button size="auto" className="book--favorites" onClick={addFavoriteBook}>
           <span>Add to favorites</span>
           <Icon
             type="star"
             fill={isFavoriteBook?.id ? '#000' : '#fff'}
           />
-        </button>
+        </Button>
       )}
       {book?.volumeInfo?.title && (
         <BookItemTitle title={book?.volumeInfo?.title} />

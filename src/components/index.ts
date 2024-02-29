@@ -6,3 +6,4 @@ export { Search } from './Search/Search';
 export { Loading } from './Loading/Loading';
 export { ShowErrorMessage } from './ShowErrorMessage/ShowErrorMessage';
 export { Icon } from './Icon/Icon';
+export { Button } from './Button/Button';

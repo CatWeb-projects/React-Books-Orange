@@ -1,3 +1,11 @@
+:root {
+  --opt-blue: #262262;
+  --opt-red: #EA5300;
+  --opt-dark-red: #B24008;
+  --opt-orange: #FFBA09;
+  --opt-dark-orange: #F48C07;
+}
+
 body,
 html {
   margin: 0;

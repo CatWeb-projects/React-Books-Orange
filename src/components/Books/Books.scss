@@ -34,22 +34,11 @@
   }
 
   &--favorites {
-    background-color: orange;
     display: flex;
     align-items: center;
-    border: 2px solid transparent;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease-in-out;
-
+    
     > svg {
       margin-left: 8px;
-    }
-
-    &:hover {
-      background-color: #fff;
-      border: 2px solid orange;
     }
   }
 }

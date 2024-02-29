@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { useRequest } from "estafette";
 import { books } from "../../services/api/books/books.api";
@@ -56,7 +56,7 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
     } else {
       setBooksData(data?.items);
     }
-  }, [data?.items, favoriteBooks, pathname])
+  }, [data?.items, favoriteBooks, pathname]);
 
   console.log(booksData?.length, 'books data')
   console.log(favoriteBooks, 'favoriteBooks')
