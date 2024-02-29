@@ -23,13 +23,13 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   }, [books, isFavoriteBook]);
 
   const addFavoriteBook = () => {
-    if (isFavoriteBook && books) {
+    if (isFavoriteBook) {
       setBooks(books.filter((el) => el.id !== isFavoriteBook.id));
     } else {
       setBooks([...books, book]);
     }
   };
-  
+
   return (
     <div className="book" style={id ? {padding: '24px 0'} : {}}>
       {id && (
@@ -37,7 +37,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
           <span>Add to favorites</span>
           <Icon
             type="star"
-            fill={isFavoriteBook?.id ? '#000' : '#fff'}
+            fill={isFavoriteBook?.id ? 'var(--books-black)' : 'var(--books-white)'}
           />
         </Button>
       )}

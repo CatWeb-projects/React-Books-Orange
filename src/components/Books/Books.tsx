@@ -16,7 +16,7 @@ interface BooksComponentProps {
 
 export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
   const [booksData, setBooksData] = useState<BookProps[]>([]);
-  const { request, data, errors, loading } = useRequest<BooksProps[]>();
+  const { request, data, errors, loading } = useRequest<BooksProps>();
   const [, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -58,8 +58,6 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
     }
   }, [data?.items, favoriteBooks, pathname]);
 
-  console.log(booksData?.length, 'books data')
-  console.log(favoriteBooks, 'favoriteBooks')
   return (
     <div className="books">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}

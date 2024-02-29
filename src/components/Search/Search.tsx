@@ -17,6 +17,10 @@ export const Search = ({
     if (location.search) {
       searchBook(location.search.split('?q=')[1]);
     }
+
+    return () => {
+      searchBook('');
+    }
   }, [location.search]);
   
   return (

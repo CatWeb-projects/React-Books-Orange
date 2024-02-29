@@ -1,11 +1,11 @@
 .header {
-  background-color: #6ee7b7;
+  background-color: var(--books-light-green);
   display: flex;
   justify-content: flex-end;
   padding: 20px;
 
   > a {
-    color: #000;
+    color: var(--books-black);
     font-weight: 700;
     margin: 0 8px;
   }

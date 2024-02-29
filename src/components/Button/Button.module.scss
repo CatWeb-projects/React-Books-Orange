@@ -1,7 +1,7 @@
 .button {
   border-radius: 4px;
-  background-color: var(--opt-orange);
-  color: var(--opt-blue);
+  background-color: var(--books-orange);
+  color: var(--books-blue);
   border: 1px solid transparent;
   outline: none;
   margin: 0 8px;
@@ -16,8 +16,8 @@
   }
 
   &:hover {
-    background-color: #fff;
-    border-color: var(--opt-orange);
+    background-color: var(--books-white);
+    border-color: var(--books-orange);
   }
 }
 
@@ -41,12 +41,12 @@
   }
 
   &-secondary {
-    border: 1px solid var(--opt-blue);
+    border: 1px solid var(--books-blue);
     background-color: transparent;
   }
 
   &-info {
-    background: var(--opt-blue);
+    background: var(--books-blue);
   }
 
   &-onboard {

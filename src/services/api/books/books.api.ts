@@ -6,7 +6,7 @@ const { CancelToken } = axios;
 
 export const books = {
   getSearchBooks: {
-    action: (search: string): Promise<{ data: BooksProps[] }> =>
+    action: (search: string): Promise<{ data: BooksProps }> =>
       axios.get(`/volumes?q=${search}&maxResults=40`, {
         cancelToken: new CancelToken(
           (c: Canceler) => (books.getSearchBooks.cancel = c),

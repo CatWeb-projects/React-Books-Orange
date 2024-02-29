@@ -26,7 +26,7 @@ export function Icon({
     }${disabled ? ' disabled' : ''} ${className}`,
     width: '20px',
     height: '20px',
-    fill: '#fff',
+    fill: 'var(--books-white)',
     onClick,
   };
   switch (type) {

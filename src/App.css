@@ -1,9 +1,13 @@
 :root {
-  --opt-blue: #262262;
-  --opt-red: #EA5300;
-  --opt-dark-red: #B24008;
-  --opt-orange: #FFBA09;
-  --opt-dark-orange: #F48C07;
+  --books-blue: #262262;
+  --books-red: #EA5300;
+  --books-dark-red: #B24008;
+  --books-orange: #FFBA09;
+  --books-dark-orange: #F48C07;
+  --books-light-green: #6ee7b7;
+  --books-light-yellow: #fef3c7;
+  --books-white: #FFFFFF;
+  --books-black: #000;
 }
 
 body,
@@ -28,7 +32,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: var(--books-white);
   transition: all 0.3s ease-in-out;
 
   &.link-disabled {
@@ -43,7 +47,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #fff;
+  color: var(--books-white);
 }
 
 h1,
@@ -62,7 +66,6 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  /* background: #ffff26; */
-  background: orange;
+  background: var(--books-dark-orange);
   border-radius: 2px;
 }
