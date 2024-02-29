@@ -11,10 +11,11 @@ import './Books.scss';
 
 interface BooksComponentProps {
   search?: string;
-  favoriteBooks?: BookProps[]
+  favoriteBooks?: BookProps[];
+  classes: string;
 }
 
-export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
+export const Books = ({ search, favoriteBooks, classes }: BooksComponentProps) => {
   const [booksData, setBooksData] = useState<BookProps[]>([]);
   const { request, data, errors, loading } = useRequest<BooksProps>();
   const [, setSearchParams] = useSearchParams();
@@ -59,7 +60,7 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
   }, [data?.items, favoriteBooks, pathname]);
 
   return (
-    <div className="books">
+    <div className={`books ${classes}`}>
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
 
       {loading && <Loading />}
