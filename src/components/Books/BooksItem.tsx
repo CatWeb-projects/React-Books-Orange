@@ -41,6 +41,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
           />
         </Button>
       )}
+      
       {book?.volumeInfo?.title && (
         <BookItemTitle title={book?.volumeInfo?.title} />
       )}

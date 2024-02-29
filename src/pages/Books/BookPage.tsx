@@ -29,7 +29,9 @@ const BookPage = () => {
   return (
     <div className="book-page">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
+
       {loading && <Loading />}
+      
       {(!loading && !errors?.error?.message) && <BooksItem book={book} />}
     </div>
   )

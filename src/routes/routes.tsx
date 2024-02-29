@@ -23,6 +23,7 @@ function MainRoutes() {
             )
           }
         />
+
         <Route
           path="book/:id"
           element={
@@ -33,6 +34,7 @@ function MainRoutes() {
             )
           }
         />
+
         <Route
           path="books/favorites"
           element={

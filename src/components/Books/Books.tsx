@@ -61,12 +61,15 @@ export const Books = ({ search, favoriteBooks }: BooksComponentProps) => {
   return (
     <div className="books">
       {errors?.error?.message && <ShowErrorMessage errorMessage={errors?.error?.message} />}
+
       {loading && <Loading />}
+
       <div className="books--wrapper">
         {booksData?.length > 0 && booksData?.map((book) => (
           <BooksItem book={book} key={book.id} />
         ))}
       </div>
+      
       {(pathname === '/favorites' && booksData?.length === 0) && (
         <div>No Data</div>
       )}
