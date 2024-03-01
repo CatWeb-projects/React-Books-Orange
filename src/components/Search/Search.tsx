@@ -12,7 +12,7 @@ export const Search = ({
   searchBook
 }: SearchProps) => {
   const location = useLocation();
-  const searchQuery = location.search.split('?q=')[1]
+  const searchQuery = location.search.split('?q=')[1];
 
   useEffect(() => {
     if (searchQuery) {

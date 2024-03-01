@@ -50,13 +50,13 @@ export const BooksItem = ({ book }: BookItemsProps) => {
         <a
           href={id ? `${book.volumeInfo.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/book/${book.id}`}
           target={id ? '_blank' : ''}
-          style={id ? {margin: '12px 0'} : {}}
+          style={id ? { margin: '12px 0' } : {}}
         >
           <img
             className={`book--image ${id ? 'book--image--detailed' : ''}`}
             src={book.volumeInfo.imageLinks.thumbnail}
             alt={book.volumeInfo.title}
-            style={id ? {maxHeight: 'none'} : {}}
+            style={id ? { maxHeight: 'none' } : {}}
           />
         </a>
       )}
@@ -76,7 +76,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       {book?.searchInfo?.textSnippet && (
         <div
           className={`book--text ${id ? 'book--text--detailed' : ''}`}
-          dangerouslySetInnerHTML={{__html: book.searchInfo.textSnippet}}
+          dangerouslySetInnerHTML={{ __html: book.searchInfo.textSnippet }}
         />
       )}
 
