@@ -17,6 +17,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   const [isFavoriteBook, setIsFavoriteBook] = useState<BookProps>();
   const { id } = useParams();
   const bookRedirect = id ? `${book?.volumeInfo?.previewLink}&printsec=frontcover&dq=-term&hl=&cd=1` : `/book/${book.id}`;
+  const redirectToNewTab = id ? '_blank' : ''
 
   useEffect(() => {
     setIsFavoriteBook(books?.find((el) => el.id === book.id));
@@ -50,7 +51,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       {(book?.volumeInfo?.imageLinks?.thumbnail) ? (
         <a
           href={bookRedirect}
-          target={id ? '_blank' : ''}
+          target={redirectToNewTab}
           style={id ? { margin: '12px 0' } : {}}
         >
           <img
@@ -61,7 +62,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
           />
         </a>
       ): (
-        <a href={bookRedirect} className="book--redirect-missing-image">
+        <a href={bookRedirect} className="book--redirect-missing-image" target={redirectToNewTab}>
           View book
         </a>
       )}
