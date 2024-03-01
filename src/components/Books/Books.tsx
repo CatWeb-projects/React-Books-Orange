@@ -5,19 +5,19 @@ import { books } from "../../services/api/books/books.api";
 import { BooksItem } from "./BooksItem";
 import { Loading } from "../Loading/Loading";
 import { ShowErrorMessage } from "../ShowErrorMessage/ShowErrorMessage";
-import { BookProps, BooksProps } from "../../interface/books.interface";
+import { BookProps, BooksDataProps } from "../../interface/books.interface";
 
 import './Books.scss';
 
 interface BooksComponentProps {
   search?: string;
   favoriteBooks?: BookProps[];
-  classes: string;
+  classes?: string;
 }
 
 export const Books = ({ search, favoriteBooks, classes }: BooksComponentProps) => {
   const [booksData, setBooksData] = useState<BookProps[]>([]);
-  const { request, data, errors, loading } = useRequest<BooksProps>();
+  const { request, data, errors, loading } = useRequest<BooksDataProps>();
   const [, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const { pathname } = useLocation();

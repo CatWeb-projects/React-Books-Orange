@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import { BookProps } from "../../interface/books.interface"
-import { BookItemTitle } from "./BookItemTitle";
-import { getDataFromStorage, setDataToStorage } from "../../hooks/storage";
-import { Icon } from "../Icon/Icon";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { BookItemTitle } from "./BookItemTitle";
+import { Icon } from "../Icon/Icon";
 import { Button } from "../Button/Button";
+import { getDataFromStorage, setDataToStorage } from "../../hooks/storage";
+import { BookProps } from "../../interface/books.interface";
 
 interface BookItemsProps {
   book: BookProps;

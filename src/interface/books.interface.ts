@@ -1,4 +1,4 @@
-export interface BooksProps {
+export interface BooksDataProps {
   items: BookProps[];
   kind: string;
   totalItems: number;

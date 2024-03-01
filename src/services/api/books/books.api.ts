@@ -1,12 +1,12 @@
 import axios, { Canceler } from 'axios';
-import { BookProps, BooksProps } from '../../../interface/books.interface';
+import { BookProps, BooksDataProps } from '../../../interface/books.interface';
 
 axios.defaults.baseURL = 'https://www.googleapis.com/books/v1';
 const { CancelToken } = axios;
 
 export const books = {
   getSearchBooks: {
-    action: (search: string): Promise<{ data: BooksProps }> =>
+    action: (search: string): Promise<{ data: BooksDataProps }> =>
       axios.get(`/volumes?q=${search}&maxResults=40`, {
         cancelToken: new CancelToken(
           (c: Canceler) => (books.getSearchBooks.cancel = c)
