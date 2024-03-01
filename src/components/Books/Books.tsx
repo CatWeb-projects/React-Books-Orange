@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { useRequest } from "estafette";
 import { books } from "../../services/api/books/books.api";
@@ -47,7 +47,7 @@ export const Books = ({ search, favoriteBooks, classes }: BooksComponentProps) =
     }
   }, [search])
 
-  useEffect(() => {
+  useMemo(() => {
     if (pathname === '/books/favorites') {
       if (favoriteBooks) {
         setBooksData(favoriteBooks)
@@ -65,14 +65,18 @@ export const Books = ({ search, favoriteBooks, classes }: BooksComponentProps) =
 
       {loading && <Loading />}
 
-      <div className="books--wrapper">
-        {booksData?.length > 0 && booksData?.map((book) => (
-          <BooksItem book={book} key={book.id} />
-        ))}
-      </div>
+      {booksData?.length > 0 && (
+        <div className="books--wrapper">
+          {booksData.map((book) => (
+            <BooksItem book={book} key={book.id} />
+          ))}
+        </div>
+      )}
       
-      {(pathname === '/favorites' && booksData?.length === 0) && (
-        <div>No Data</div>
+      {(pathname === '/books/favorites' && booksData?.length === 0) && (
+        <div className="no-data">
+          <h3>No Data</h3>
+        </div>
       )}
     </div>
   )
