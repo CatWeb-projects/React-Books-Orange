@@ -42,6 +42,7 @@
     color: var(--books-black);
     box-shadow: 0 0 10px var(--books-orange);
     border-radius: 2px;
+    overflow: hidden;
 
     > img {
       transform: scale(1.05);
