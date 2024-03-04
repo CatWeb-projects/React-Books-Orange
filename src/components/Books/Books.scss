@@ -9,6 +9,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     gap: 8px;
+    padding: 4px 0;
   }
 
   &--favorites {
@@ -25,6 +26,18 @@
   padding: 8px;
   width: 100%;
   max-width: 500px;
+  color: var(--books-black);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--books-black);
+    box-shadow: 0 0 10px var(--books-orange);
+    border-radius: 2px;
+
+    > img {
+      transform: scale(1.05);
+    }
+  }
 
   &--title {
     margin: 16px 0;
@@ -45,6 +58,8 @@
 
   &--image {
     max-height: 170px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease-in-out;
 
     &--detailed {
       height: 400px;

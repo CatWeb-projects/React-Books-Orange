@@ -33,7 +33,12 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   };
 
   return (
-    <div className="book" style={id ? { padding: '24px' } : {}}>
+    <a
+      href={bookRedirect}
+      target={redirectToNewTab}
+      className="book"
+      style={id ? { padding: '24px' } : {}}
+    >
       {id && (
         <Button size="large" className="book--favorites" onClick={addFavoriteBook}>
           <span>Add to favorites</span>
@@ -49,22 +54,14 @@ export const BooksItem = ({ book }: BookItemsProps) => {
       )}
       
       {(book?.volumeInfo?.imageLinks?.thumbnail) ? (
-        <a
-          href={bookRedirect}
-          target={redirectToNewTab}
-          style={id ? { margin: '12px 0' } : {}}
-        >
-          <img
-            className={`book--image ${id ? 'book--image--detailed' : ''}`}
-            src={book.volumeInfo.imageLinks.thumbnail}
-            alt={book.volumeInfo.title}
-            style={id ? { maxHeight: 'none' } : {}}
-          />
-        </a>
+        <img
+          className={`book--image ${id ? 'book--image--detailed' : ''}`}
+          src={book.volumeInfo.imageLinks.thumbnail}
+          alt={book.volumeInfo.title}
+          style={id ? { maxHeight: 'none' } : {}}
+        />
       ): (
-        <a href={bookRedirect} className="book--redirect-missing-image" target={redirectToNewTab}>
-          View book
-        </a>
+        <img src="/svg/no-image-placeholder.svg" alt="placeholder" className={`book--image ${id ? 'book--image--detailed' : ''}`} />
       )}
 
       {book?.volumeInfo?.publisher && (
@@ -86,6 +83,6 @@ export const BooksItem = ({ book }: BookItemsProps) => {
         />
       )}
 
-    </div>
+    </a>
   )
 }
