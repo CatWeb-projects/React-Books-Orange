@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './Button.module.scss';
+import './Button.scss';
 
 interface Props {
   children: React.ReactNode;
@@ -36,7 +36,7 @@ export function Button({
   const btnSize = `button-type-${size}`;
   return (
     <button
-      className={`${styles.button} ${styles[btnType]} ${styles[btnSize]} ${className}`}
+      className={`button ${btnType} ${btnSize} ${disabled ? 'disabled' : ''} ${className}`}
       onClick={onClickHandler}
       style={style}
       type={generalType ? 'submit' : 'button'}

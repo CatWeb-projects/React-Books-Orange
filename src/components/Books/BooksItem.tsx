@@ -33,7 +33,7 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   };
 
   return (
-    <div className="book--wrapper">
+    <div className={`book--wrapper ${id ? 'book--wrapper--detailed' : ''}`}>
       {id && (
         <div className="book--button">
           <Button size="large" className="book--favorites" onClick={addFavoriteBook}>

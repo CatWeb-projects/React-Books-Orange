@@ -31,7 +31,7 @@
 
   &--wrapper {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     background-color: var(--books-light-yellow);
     display: flex;
     flex-direction: column;
@@ -185,6 +185,12 @@
   }
 
   .book {
+    &--wrapper {
+      &--detailed {
+        margin: 0 16px;
+      }
+    }
+
     &--text {
       width: 70%;
 
