@@ -33,56 +33,62 @@ export const BooksItem = ({ book }: BookItemsProps) => {
   };
 
   return (
-    <a
-      href={bookRedirect}
-      target={redirectToNewTab}
-      className="book"
-      style={id ? { padding: '24px' } : {}}
-    >
+    <div className="book--wrapper">
       {id && (
-        <Button size="large" className="book--favorites" onClick={addFavoriteBook}>
-          <span>Add to favorites</span>
-          <Icon
-            type="star"
-            fill={isFavoriteBook?.id ? 'var(--books-black)' : 'var(--books-white)'}
+        <div className="book--button">
+          <Button size="large" className="book--favorites" onClick={addFavoriteBook}>
+            <span>Add to favorites</span>
+            <Icon
+              type="star"
+              fill={isFavoriteBook?.id ? 'var(--books-black)' : 'var(--books-white)'}
+            />
+          </Button>
+        </div>
+      )}
+      <a
+        href={bookRedirect}
+        target={redirectToNewTab}
+        className="book"
+        style={id ? { padding: '24px' } : {}}
+      >
+        {book?.volumeInfo?.title && (
+          <BookItemTitle title={book?.volumeInfo?.title} classes={id ? 'book--title--detailed' : ''} />
+        )}
+        
+        {(book?.volumeInfo?.imageLinks?.thumbnail) ? (
+          <img
+            className={`book--image ${id ? 'book--image--detailed' : ''}`}
+            src={book.volumeInfo.imageLinks.thumbnail}
+            alt={book.volumeInfo.title}
           />
-        </Button>
-      )}
+        ): (
+          <img
+            src="/svg/no-image-placeholder.svg"
+            alt="placeholder"
+            className={`book--image ${id ? 'book--image--detailed no-image' : ''}`}
+          />
+        )}
 
-      {book?.volumeInfo?.title && (
-        <BookItemTitle title={book?.volumeInfo?.title} classes={id ? 'book--title--detailed' : ''} />
-      )}
-      
-      {(book?.volumeInfo?.imageLinks?.thumbnail) ? (
-        <img
-          className={`book--image ${id ? 'book--image--detailed' : ''}`}
-          src={book.volumeInfo.imageLinks.thumbnail}
-          alt={book.volumeInfo.title}
-          style={id ? { maxHeight: 'none' } : {}}
-        />
-      ): (
-        <img src="/svg/no-image-placeholder.svg" alt="placeholder" className={`book--image ${id ? 'book--image--detailed' : ''}`} />
-      )}
+        {book?.volumeInfo?.publisher && (
+          <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
+            Publisher: {book?.volumeInfo?.publisher}
+          </div>
+        )}
+        
+        {book?.volumeInfo?.subtitle && (
+          <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
+            {book?.volumeInfo?.subtitle}
+          </div>
+        )}
 
-      {book?.volumeInfo?.publisher && (
-        <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
-          Publisher: {book?.volumeInfo?.publisher}
-        </div>
-      )}
-      
-      {book?.volumeInfo?.subtitle && (
-        <div className={`book--text ${id ? 'book--text--detailed' : ''}`}>
-          {book?.volumeInfo?.subtitle}
-        </div>
-      )}
+        {book?.searchInfo?.textSnippet && (
+          <div
+            className={`book--text ${id ? 'book--text--detailed' : ''}`}
+            dangerouslySetInnerHTML={{ __html: book.searchInfo.textSnippet }}
+          />
+        )}
 
-      {book?.searchInfo?.textSnippet && (
-        <div
-          className={`book--text ${id ? 'book--text--detailed' : ''}`}
-          dangerouslySetInnerHTML={{ __html: book.searchInfo.textSnippet }}
-        />
-      )}
-
-    </a>
+      </a>
+    </div>
   )
 }

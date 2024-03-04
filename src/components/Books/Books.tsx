@@ -15,7 +15,7 @@ interface BooksComponentProps {
   classes?: string;
 }
 
-export const Books = ({ search, favoriteBooks, classes }: BooksComponentProps) => {
+export const Books = ({ search, favoriteBooks, classes = '' }: BooksComponentProps) => {
   const [booksData, setBooksData] = useState<BookProps[]>([]);
   const { request, data, errors, loading } = useRequest<BooksDataProps>();
   const [, setSearchParams] = useSearchParams();
