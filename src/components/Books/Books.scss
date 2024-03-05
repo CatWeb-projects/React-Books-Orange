@@ -35,6 +35,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    &--detailed {
+      max-width: 480px;
+    }
   }
 
   &:hover {
